@@ -3,6 +3,7 @@ version: '3.8'
 services:
   backend:
     build: ./backend
+    image: jishnu7676/quantummed-backend:latest
     ports:
       - "8000:8000"
     volumes:
@@ -14,6 +15,7 @@ services:
 
   frontend:
     build: ./frontend
+    image: jishnu7676/quantummed-frontend:latest
     ports:
       - "5173:5173"
     depends_on:

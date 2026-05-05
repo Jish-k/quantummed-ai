@@ -1,0 +1,78 @@
+name: QuantumMed AI CI/CD
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  backend-ci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install Backend Dependencies
+        run: |
+          cd backend
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run Pylint
+        run: |
+          cd backend
+          pylint **/*.py --exit-zero
+
+      - name: Run PyUnit Tests
+        run: |
+          cd backend
+          python -m unittest discover tests
+
+  frontend-ci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Debug - List Files
+        run: ls -R
+
+      - name: Install Frontend Dependencies
+        run: |
+          if [ -d "frontend" ]; then
+            cd frontend
+            npm ci
+          else
+            echo "ERROR: frontend directory not found. Did you forget to git add it?"
+            exit 1
+          fi
+
+      - name: Run Frontend Linting
+        run: |
+          cd frontend
+          npm run lint || echo "Linting failed, but continuing build"
+
+      - name: Build Frontend
+        run: |
+          cd frontend
+          npm run build
+
+  docker-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Validate Docker Compose
+        run: docker compose config

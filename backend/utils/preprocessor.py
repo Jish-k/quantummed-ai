@@ -5,7 +5,13 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
 import pickle
 
-def load_and_preprocess_data(filepath="data/heart.csv"):
+def load_and_preprocess_data(filepath=None):
+    if filepath is None:
+        import os
+        # Path to project root/data/heart.csv
+        base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        filepath = os.path.join(os.path.dirname(base_dir), "data", "heart.csv")
+    
     df = pd.read_csv(filepath)
     X = df.drop("target", axis=1)
     y = df["target"]
