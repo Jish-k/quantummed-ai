@@ -41,19 +41,27 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20'
+
+      - name: Debug - List Files
+        run: ls -R
 
       - name: Install Frontend Dependencies
         run: |
-          cd frontend
-          npm install
+          if [ -d "frontend" ]; then
+            cd frontend
+            npm ci
+          else
+            echo "ERROR: frontend directory not found. Did you forget to git add it?"
+            exit 1
+          fi
 
       - name: Run Frontend Linting
         run: |
           cd frontend
-          npm run lint || echo "Linting failed, check logs"
+          npm run lint || echo "Linting failed, but continuing build"
 
       - name: Build Frontend
         run: |
