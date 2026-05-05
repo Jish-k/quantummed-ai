@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  labels:
+    app: quantummed
+    component: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: quantummed
+      component: backend
+  template:
+    metadata:
+      labels:
+        app: quantummed
+        component: backend
+    spec:
+      containers:
+      - name: backend
+        image: jishnu7676/quantummed-backend:latest
+        ports:
+        - containerPort: 8000
+        env:
+        - name: MLFLOW_TRACKING_URI
+          value: "http://mlflow-service:5000"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service
+spec:
+  selector:
+    app: quantummed
+    component: backend
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 8000
+  type: ClusterIP

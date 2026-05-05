@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  labels:
+    app: quantummed
+    component: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: quantummed
+      component: frontend
+  template:
+    metadata:
+      labels:
+        app: quantummed
+        component: frontend
+    spec:
+      containers:
+      - name: frontend
+        image: jishnu7676/quantummed-frontend:latest
+        ports:
+        - containerPort: 5173
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-service
+spec:
+  selector:
+    app: quantummed
+    component: frontend
+  ports:
+    - protocol: TCP
+      port: 5173
+      targetPort: 5173
+  type: LoadBalancer
