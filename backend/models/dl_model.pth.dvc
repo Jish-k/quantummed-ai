@@ -1,0 +1,5 @@
+outs:
+- md5: ddee32193ffaeddd493208a263dc2928
+  size: 7201
+  hash: md5
+  path: dl_model.pth

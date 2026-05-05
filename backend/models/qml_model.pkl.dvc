@@ -1,0 +1,5 @@
+outs:
+- md5: 701ef2b7d0cca465c104ec281a1ca369
+  size: 294
+  hash: md5
+  path: qml_model.pkl
