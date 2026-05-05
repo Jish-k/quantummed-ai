@@ -1,0 +1,12 @@
+fastapi
+uvicorn
+pandas
+numpy
+scikit-learn
+torch
+pennylane
+mlflow
+pydantic
+pytest
+pylint
+axios

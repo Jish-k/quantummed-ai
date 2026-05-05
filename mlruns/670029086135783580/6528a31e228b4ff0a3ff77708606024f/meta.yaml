@@ -1,0 +1,14 @@
+artifact_uri: file:///app/mlruns/670029086135783580/6528a31e228b4ff0a3ff77708606024f/artifacts
+end_time: 1777794327346
+entry_point_name: ''
+experiment_id: '670029086135783580'
+lifecycle_stage: active
+run_id: 6528a31e228b4ff0a3ff77708606024f
+run_name: worried-loon-901
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777794327226
+status: 3
+tags: []
+user_id: root

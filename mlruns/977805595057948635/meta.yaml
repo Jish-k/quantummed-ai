@@ -1,0 +1,8 @@
+artifact_location: file:///app/mlruns/977805595057948635
+creation_time: 1777794334848
+experiment_id: '977805595057948635'
+last_update_time: 1777794334848
+lifecycle_stage: active
+name: QuantumMed_QML
+trace_location: null
+workspace: default

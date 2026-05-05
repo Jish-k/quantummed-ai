@@ -1,0 +1,14 @@
+artifact_uri: file:///app/mlruns/977805595057948635/c96f3de824c44ab887e799674378e221/artifacts
+end_time: 1777794335962
+entry_point_name: ''
+experiment_id: '977805595057948635'
+lifecycle_stage: active
+run_id: c96f3de824c44ab887e799674378e221
+run_name: unequaled-bat-285
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777794334865
+status: 3
+tags: []
+user_id: root
